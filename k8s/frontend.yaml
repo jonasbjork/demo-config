@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ghcr.io/yayamayajd/guestbook-web@sha256:58e09538bb0c31c54ca8b798cfebf6dcdd073972074b6681bc9105ff0d4d0650
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+
